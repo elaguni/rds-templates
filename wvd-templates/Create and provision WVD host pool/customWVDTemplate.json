@@ -486,6 +486,32 @@
                 "count": "[if(greater(parameters('rdshNumberOfInstances'),1),sub(parameters('rdshNumberOfInstances'),1),1)]"
             },
             "condition": "[greater(parameters('rdshNumberOfInstances'),1)]"
+        },
+        {
+            "type":"Microsoft.Compute/virtualMachines/extensions",
+            "name":"[concat(variables('rdshPrefix'), copyindex(1),'/', 'MoveAzureTempDrive')]",
+            "apiVersion": "2018-10-01",
+            "location":"[parameters('location')]",
+
+            "properties":{
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.73",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "modulesUrl": "[uri(parameters('_artifactsLocation'), concat('Scripts/MoveAzureTempDrive.ps1.zip', parameters('_artifactsLocationSasToken')))]",
+                    "wmfVersion": "latest",
+                    "configurationFunction": "MoveAzureTempDrive.ps1\\MoveAzureTempDrive",
+                    "properties": {
+                        "TempDriveLetter": "[parameters('tempDriveLetter')]"
+                    }
+                }
+            },
+            "copy": {
+                "name": "additional-moveTempStore-dsc-loop",
+                "count": "[if(greater(parameters('rdshNumberOfInstances'),1),sub(parameters('rdshNumberOfInstances'),1),1)]"
+            },
+            "condition": "[greater(parameters('rdshNumberOfInstances'),1)]"
         }
     ],
     "outputs": {

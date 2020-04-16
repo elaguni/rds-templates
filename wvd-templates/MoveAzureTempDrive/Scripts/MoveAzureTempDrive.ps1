@@ -10,9 +10,9 @@
     Node localhost 
     {
 
-       LocalConfigurationManager 
-       {
-           RebootNodeIfNeeded = $True
+       LocalConfigurationManager {
+           RebootNodeIfNeeded = $true
+           ConfigurationMode = "ApplyOnly"
        }      
                
         Script DisablePageFile
