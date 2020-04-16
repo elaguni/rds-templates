@@ -20,7 +20,8 @@
             "defaultValue": "Gallery",
             "allowedValues": [
                 "CustomVHD",
-                "CustomImage"
+                "CustomImage",
+                "Gallery"
             ],
             "type": "string",
             "metadata": {
@@ -33,6 +34,25 @@
             "metadata": {
                 "description": "(Required when rdshImageSource = CustomVHD) URI of the sysprepped image vhd file to be used to create the session host VMs. For example, https://rdsstorage.blob.core.windows.net/vhds/sessionhostimage.vhd"
             }
+        },
+        "rdshGalleryImageSKU": {
+            "type": "string",
+            "metadata": {
+                "description": "(Required when rdshImageSource = Gallery) Gallery image SKU. Values without a numeric suffix, such as 1903, will use the latest release available in this template."
+            },
+            "allowedValues": [
+               "Windows-10-Enterprise-multi-session-with-Office-365-ProPlus",
+                "Windows-10-Enterprise-multi-session-with-Office-365-ProPlus-1909",
+                "Windows-10-Enterprise-multi-session-with-Office-365-ProPlus-1903",
+                "Windows-10-Enterprise-multi-session",
+                "Windows-10-Enterprise-multi-session-1909",
+                "Windows-10-Enterprise-multi-session-1903",
+                "Windows-10-Enterprise-Latest",
+                "Windows-10-Enterprise-1909",
+                "Windows-10-Enterprise-1903",
+                "2016-Datacenter"
+            ],
+            "defaultValue": "Windows-10-Enterprise-multi-session-with-Office-365-ProPlus"
         },
         "rdshCustomImageSourceName": {
             "defaultValue": "",
@@ -489,10 +509,12 @@
         },
         {
             "type":"Microsoft.Compute/virtualMachines/extensions",
-            "name":"[concat(variables('rdshPrefix'), copyindex(1),'/', 'MoveAzureTempDrive')]",
+            "name":"[concat(variables('rdshPrefix'), copyindex(),'/', 'MoveAzureTempDrive')]",
             "apiVersion": "2018-10-01",
             "location":"[parameters('location')]",
-
+            "dependsOn": [
+                "additional-rdsh-dsc-loop"
+            ],
             "properties":{
                 "publisher": "Microsoft.Powershell",
                 "type": "DSC",
