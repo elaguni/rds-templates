@@ -276,7 +276,7 @@ configuration MoveAzureTempDrive
         [string]$TempDriveLetter
     )
 
-    Import-DscResource -ModuleName MoveAzureTempDrive
+    Import-DscResource -ModuleName MoveAzureTempDrive, xComputerManagement
 
     Node localhost 
     {

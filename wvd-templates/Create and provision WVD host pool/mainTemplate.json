@@ -509,7 +509,7 @@
         },
         {
             "type":"Microsoft.Compute/virtualMachines/extensions",
-            "name":"[concat(variables('rdshPrefix'), copyindex(),'/', 'MoveAzureTempDrive')]",
+            "name":"[concat(variables('rdshPrefix'), copyindex(2),'/', 'MoveAzureTempDrive')]",
             "apiVersion": "2018-10-01",
             "location":"[parameters('location')]",
             "dependsOn": [
