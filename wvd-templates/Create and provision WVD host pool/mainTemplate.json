@@ -521,7 +521,7 @@
                 "typeHandlerVersion": "2.73",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                    "modulesUrl": "[uri(parameters('_artifactsLocation'), concat('Scripts/MoveAzureTempDrive.ps1.zip', parameters('_artifactsLocationSasToken')))]",
+                    "modulesUrl": "[uri(parameters('_artifactsLocation'), concat('DSC/Configuration.zip', parameters('_artifactsLocationSasToken')))]",
                     "wmfVersion": "latest",
                     "configurationFunction": "Configuration.ps1\\MoveAzureTempDrive",
                     "properties": {
