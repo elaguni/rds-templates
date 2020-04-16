@@ -389,6 +389,9 @@
                     },
                     "createAvailabilitySet": {
                         "value": "[variables('createAvailabilitySet')]"
+                    },
+                    "tempDriveLetter": {
+                        "value": "[parameters('tempDriveLetter')"
                     }
                 }
             }
@@ -531,9 +534,8 @@
             },
             "copy": {
                 "name": "additional-moveTempStore-dsc-loop",
-                "count": "[if(greater(parameters('rdshNumberOfInstances'),1),sub(parameters('rdshNumberOfInstances'),1),1)]"
-            },
-            "condition": "[greater(parameters('rdshNumberOfInstances'),1)]"
+                "count": "[parameters('rdshNumberOfInstances')]"
+            }
         }
     ],
     "outputs": {
