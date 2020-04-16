@@ -523,7 +523,7 @@
                 "settings": {
                     "modulesUrl": "[uri(parameters('_artifactsLocation'), concat('Scripts/MoveAzureTempDrive.ps1.zip', parameters('_artifactsLocationSasToken')))]",
                     "wmfVersion": "latest",
-                    "configurationFunction": "MoveAzureTempDrive.ps1\\MoveAzureTempDrive",
+                    "configurationFunction": "Configuration.ps1\\MoveAzureTempDrive",
                     "properties": {
                         "TempDriveLetter": "[parameters('tempDriveLetter')]"
                     }
