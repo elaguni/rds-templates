@@ -391,7 +391,7 @@
                         "value": "[variables('createAvailabilitySet')]"
                     },
                     "tempDriveLetter": {
-                        "value": "[parameters('tempDriveLetter')"
+                        "value": "[parameters('tempDriveLetter')]"
                     }
                 }
             }
